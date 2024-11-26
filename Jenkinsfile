@@ -1,6 +1,6 @@
 pipeline {
   agent {
-    docker { image 'node:16-alpine' }
+    docker { image 'node:22.11.0-alpine3.20' }
   }
     stages {
       
@@ -24,16 +24,5 @@ pipeline {
             }
         }
         
-    }
-
-    post {
-        success {
-        }
-        failure {
-          
-        }
-        always {
-
-        }
     }
 } 

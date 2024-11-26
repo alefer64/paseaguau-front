@@ -1,6 +1,9 @@
 pipeline {
   agent {
-    docker { image 'node:16-alpine'}
+    docker {
+      label 'docker'
+      image 'node:16-alpine'}
+      args '--name docker-node' // list any args
   }
     stages {
       

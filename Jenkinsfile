@@ -2,6 +2,10 @@ pipeline {
   agent {
     docker { image 'node:16-alpine'}
   }
+  tools {
+  <...>
+  'org.jenkinsci.plugins.docker.commons.tools.DockerTool' 'docker'
+}
     stages {
       
         stage('Install Dependencies') {

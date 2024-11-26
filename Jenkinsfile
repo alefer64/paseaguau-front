@@ -3,7 +3,8 @@ pipeline {
     docker {
       label 'docker'
       image 'node:16-alpine'}
-      args '--name docker-node' // list any args
+      args '--name docker-node'
+  }
   }
     stages {
       

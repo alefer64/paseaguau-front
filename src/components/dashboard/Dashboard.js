@@ -21,7 +21,7 @@ const Dashboard = () => {
             className='dashboard-card'
             cover={<BaiduOutlined className='dashboard-icon' />}
           >
-            <Text>Registra y gestiona las mascotas que deseas pasear.</Text>
+            <Text>Registra y gestiona las mascotas que deseas pasear</Text>
             <br/>
             <Link to='/pets'><BaiduOutlined /> Ver Mascotas</Link>
           </Card>

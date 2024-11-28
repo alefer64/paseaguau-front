@@ -42,7 +42,10 @@ pipeline {
       }
     }
 
-    stage('Update Manifests') {
+  /*  stage('Update Manifests') {
+      when {
+        branch 'production'
+      }
       steps {
         script {
           sh '''
@@ -56,7 +59,7 @@ pipeline {
           '''
         }
       }
-    }
+    }*/
   }
 
   post {

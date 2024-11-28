@@ -32,7 +32,7 @@ pipeline {
       }
     }
 
-  /*  stage('Update Manifests') {
+    stage('Update Manifests') {
       when {
         branch 'production'
       }
@@ -49,7 +49,7 @@ pipeline {
           '''
         }
       }
-    }*/
+    }
   }
 
   post {

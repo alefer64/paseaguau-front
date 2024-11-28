@@ -32,12 +32,6 @@ pipeline {
   }
 
   post {
-    always {
-      script {
-        // Limpiar imágenes locales después de la ejecución
-        sh "docker rmi ${REGISTRY}/${IMAGE_NAME}:${BUILD_NUMBER} || true"
-      }
-    }
     success {
       echo 'Build y push completados exitosamente.'
     }

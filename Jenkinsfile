@@ -1,5 +1,10 @@
 pipeline {
   agent any
+
+    tools {
+        nodejs '18.18.0'
+    }
+  
     stages {
       
         stage('Install Dependencies') {

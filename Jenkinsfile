@@ -12,16 +12,6 @@ pipeline {
   }
 
   stages {
-    stage('Checkout') {
-      steps {
-        script {
-          sh '''
-          git clone -b production https://github.com/alefer64/paseaguau-front.git
-          cd paseaguau-front
-          '''
-        }
-      }
-    }
 
     stage('Build Image') {
       steps {

@@ -42,27 +42,10 @@ pipeline {
           cd paseaguau-front
           git config user.name "alefer64"
           git config user.email "alejandro.fernandez141@davinci.edu.ar"
-          
-          # Mostrar contenido del archivo antes del cambio
-          echo "Contenido original:"
-          cat deployment/paseaguau-ui-deployment.yaml
-          
-          # Actualizar la imagen en el manifiesto de deployment
           sed -i 's|image: localhost:5000/paseaguau:.*|image: localhost:5000/paseaguau:${BUILD_NUMBER}|' deployment/paseaguau-ui-deployment.yaml
-          
-          # Mostrar contenido del archivo después del cambio
-          echo "Contenido después de sed:"
-          cat deployment/paseaguau-ui-deployment.yaml
-          
-          # Verificar si hubo cambios
-          git diff --exit-code > /dev/null
-          if [ $? -eq 0 ]; then
-            echo "No changes detected, skipping commit."
-          else
-            git add deployment/paseaguau-ui-deployment.yaml
-            git diff --exit-code > /dev/null || git add deployment/paseaguau-ui-deployment.yaml && git commit -m "Update image to paseaguau:${BUILD_NUMBER}"
-            git push https://${GIT_CREDENTIALS_USR}:${GIT_CREDENTIALS_PSW}@github.com/alefer64/paseaguau-front.git production
-          fi
+          git add deployment/paseaguau-ui-deployment.yaml
+          git commit -m "Update image to paseaguau:${BUILD_NUMBER}"
+          git push https://${GIT_CREDENTIALS_USR}:${GIT_CREDENTIALS_PSW}@github.com/alefer64/paseaguau-front.git production
           '''
         }
       }

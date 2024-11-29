@@ -26,7 +26,6 @@ pipeline {
     
     stage('Build Image') {
       steps {
-        cleanWs()
         script {
           sh "docker build . -t ${REGISTRY}/${IMAGE_NAME}:${BUILD_NUMBER}"
         }
@@ -67,9 +66,11 @@ pipeline {
 
   post {
     success {
+      cleanWs()
       echo 'Pipeline completado exitosamente.'
     }
     failure {
+      cleanWs()
       echo 'Error en el pipeline.'
     }
   }

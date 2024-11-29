@@ -14,7 +14,7 @@ spec:
         app: paseaguau-ui
     spec:
       containers:
-      - image: localhost:5000/paseaguau:18
+      - image: localhost:5000/paseaguau:${BUILD_NUMBER}
         name: paseaguau
         ports:
         - containerPort: 3000

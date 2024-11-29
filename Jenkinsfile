@@ -1,6 +1,10 @@
 pipeline {
   agent any
-
+  
+  options {
+        skipDefaultCheckout(true)
+    }
+  
   tools {
     nodejs '18.18.0'
   }
@@ -15,6 +19,7 @@ pipeline {
 
     stage('Build Image') {
       steps {
+        cleanWs()
         script {
           sh "docker build . -t ${REGISTRY}/${IMAGE_NAME}:${BUILD_NUMBER}"
         }

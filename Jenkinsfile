@@ -25,6 +25,13 @@ pipeline {
     }
     
     stage('Build Image') {
+            when {
+                anyOf {
+                    changeRequest()
+                    branch 'develop'
+                    branch 'production'
+                }
+            }
       steps {
         script {
           sh "docker build . -t ${REGISTRY}/${IMAGE_NAME}:${BUILD_NUMBER}"
@@ -34,6 +41,7 @@ pipeline {
 
     stage('Push Image') {
       when {
+        
         branch 'production'
       }
       steps {

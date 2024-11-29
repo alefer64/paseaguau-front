@@ -9,6 +9,7 @@ pipeline {
     REGISTRY = 'localhost:5000'
     IMAGE_NAME = 'paseaguau'
     GIT_CREDENTIALS = credentials('my-git-credentials-id')
+    IMAGE_TAG = "${BRANCH_NAME}-${BUILD_NUMBER}"
   }
 
   stages {
@@ -34,7 +35,7 @@ pipeline {
             }
       steps {
         script {
-          sh "docker build . -t ${REGISTRY}/${IMAGE_NAME}:${BUILD_NUMBER}"
+             sh "docker build . -t ${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}"
         }
       }
     }
@@ -46,7 +47,7 @@ pipeline {
       }
       steps {
         script {
-          sh "docker push ${REGISTRY}/${IMAGE_NAME}:${BUILD_NUMBER}"
+            sh "docker push ${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}"
         }
       }
     }

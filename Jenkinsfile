@@ -13,18 +13,14 @@ pipeline {
 
   stages {
     
-    stage('Checkout') {
-      steps {
-        script {
-          sh '''
-          git clone -b production https://github.com/alefer64/paseaguau-front.git
-          cd paseaguau-front
-          '''
-        }
-      }
-    }
-    
     stage('Build Image') {
+            when {
+                anyOf {
+                    changeRequest()
+                    branch 'develop'
+                    branch 'production'
+                }
+            }
       steps {
         script {
           sh "docker build . -t ${REGISTRY}/${IMAGE_NAME}:${BUILD_NUMBER}"
@@ -34,6 +30,7 @@ pipeline {
 
     stage('Push Image') {
       when {
+        
         branch 'production'
       }
       steps {

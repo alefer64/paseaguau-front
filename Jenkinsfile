@@ -54,7 +54,7 @@ pipeline {
           git config user.name "alefer64"
           git config user.email "alejandro.fernandez141@davinci.edu.ar"
           echo ${BUILD_NUMBER}
-          sed -i 's|image: localhost:5000/paseaguau:.*|image: localhost:5000/paseaguau:${BUILD_NUMBER}|' deployment/paseaguau-ui-deployment.yaml
+          sed -i "s|image: localhost:5000/paseaguau:.*|image: localhost:5000/paseaguau:${BUILD_NUMBER}|" deployment/paseaguau-ui-deployment.yaml
           git add deployment/paseaguau-ui-deployment.yaml
           git commit -m "Update image to paseaguau:${BUILD_NUMBER}"
           git push https://${GIT_CREDENTIALS_USR}:${GIT_CREDENTIALS_PSW}@github.com/alefer64/paseaguau-front.git production
